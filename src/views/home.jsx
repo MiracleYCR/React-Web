@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom'
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Outlet } from 'react-router-dom'
+import { Breadcrumb, Layout } from 'antd';
 
-import getMenuList from '@/menus'
+import MenuComp from '@/components/menu';
+import FooterComp from '@/components/footer'
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const View = () => {
-  const navigateTo = useNavigate()
-
-  const [collapsed, setCollapsed] = useState(false);
-
-  const menuClick = (e) => {
-    navigateTo(e.key)
-  }
-
   return (
     <Layout
       style={{
         minHeight: '100vh',
       }}
     >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider>
         <div
           style={{
             height: 32,
@@ -29,13 +22,7 @@ const View = () => {
             background: 'rgba(255, 255, 255, 0.2)',
           }}
         />
-        <Menu
-          theme="dark"
-          mode="inline"
-          items={getMenuList()}
-          defaultSelectedKeys={['/video']}
-          onClick={menuClick}
-        ></Menu>
+        <MenuComp/>
       </Sider>
 
       <Layout className="site-layout">
@@ -62,15 +49,7 @@ const View = () => {
           <Outlet />
         </Content>
 
-        <Footer
-          style={{
-            padding: 0,
-            lineHeight: '48px',
-            textAlign: 'center',
-          }}
-        >
-          Miracle / Copyright © 2022 / 备案号: 粤ICP备2022006448号-1
-        </Footer>
+        <FooterComp/>
       </Layout>
     </Layout>
   );
