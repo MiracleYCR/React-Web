@@ -8,7 +8,7 @@ export default () => {
   let hue = 217
   let stars = []
   let count = 0
-  let maxStars = 500
+  let maxStars = 400
 
   const canvas2 = document.createElement('canvas')
   const ctx2 = canvas2.getContext('2d')
